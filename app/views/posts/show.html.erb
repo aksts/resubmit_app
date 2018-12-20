@@ -17,3 +17,14 @@
       </div>
     <% end %>
   </div>
+
+  <div id="sidebar">
+   <h2>★PV数ランキング</h2>
+     <ul>
+     <% @popular.each do |post| %>
+       <li><%= link_to Post.find_by(id: post).title, detail_post_path(post) %><span><%= (@redis.zscore "ranking", "#{post}").floor %>PV</span></li>
+     <% end %>
+     </ul>
+  </div>
+  <div class="clear"></div>
+  </div>

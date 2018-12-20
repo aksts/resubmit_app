@@ -2,17 +2,26 @@ class PostsController < ApplicationController
 
   before_action :sign_in_required, only: [:show]
   before_action :correct_user,     only: [:edit, :destroy]
-  
+
+  attr_accessor :redis
+
   def index
     @posts = Post.all
+    @redis = Redis.new
+    @popular = @redis.zrevrangebyscore "ranking", "+inf",  0, limit: [0, 4]
   end
 
   def show
     @posts = Post.all
+    @redis = Redis.new
+    @popular = @redis.zrevrangebyscore "ranking", "+inf",  0, limit: [0, 4]
   end
 
   def detail
     @post = Post.find(params[:id])
+    @redis = Redis.new
+    @redis.zincrby "ranking", 1, "#{@post.id}"
+    @popular = @redis.zrevrangebyscore "ranking", "+inf",  0, limit: [0, 4]
   end
 
   def new
