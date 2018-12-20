@@ -52,6 +52,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:id])
+    @redis = Redis.new
+    @redis.zrem "ranking", "#{@post.id}"
     @post.destroy
     redirect_to post_path
   end
