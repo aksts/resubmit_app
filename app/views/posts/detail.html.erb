@@ -1,0 +1,14 @@
+<div id="title">
+  <div>
+    <p><%= @post.created_at.strftime('%Y/%m/%d')  %> 書いた人<%= @post.user.email %></p>
+    <h1><%= @post.title %></h1>
+  </div>
+</div>
+
+<div id="article_wrap">
+  <div id="content">
+    <div>
+      <h2><%= @post.body %></h2>
+    </div>
+  </div>
+</div>

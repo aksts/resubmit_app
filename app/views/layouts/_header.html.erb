@@ -3,8 +3,8 @@
     <nav>
         <% if user_signed_in? %>
             <ul>
-              <li><a><%= link_to 'トップ', '#' %></a></li>
-              <li><a><%= link_to '新規投稿', '#' %></a></li>
+              <li><a><%= link_to 'トップ', posts_show_path %></a></li>
+              <li><a><%= link_to '新規投稿', new_post_path %></a></li>
               <li><a><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></a></li>
               <div class="clear"></div>
             </ul>

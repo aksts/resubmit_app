@@ -1,0 +1,13 @@
+<% provide(:title, 'new')%>
+
+<%= form_for(@post) do |f| %>
+
+  <p><%= f.label :title, "タイトル" %></p>
+  <p><%= f.text_field :title  %></p>
+
+  <p><%= f.label :body, "記事内容" %></p>
+  <p><%= f.text_field :body %></p>
+
+
+  <%= f.submit "create article"  %>
+<% end %>

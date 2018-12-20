@@ -1,2 +1,19 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div id="main">
+  <%= image_tag 'main-img.jpg' %>
+</div>
+
+<div id="article_wrap">
+  <div id="article_list">
+    <% @posts.each do |post| %>
+      <div>
+        <h2><%= link_to post.title, detail_post_path(post) %></h2>
+        <p><%= post.created_at.strftime('%Y/%m/%d')  %></p>
+        <p>
+        <%= link_to '編集', edit_post_path(post) %>
+        <%= link_to '削除', post_path(post),
+        method: :delete,
+        data: { confirm: '削除してよろしいですか？'} %>
+        </p>
+      </div>
+    <% end %>
+  </div>
